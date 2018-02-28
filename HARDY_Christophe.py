@@ -6,6 +6,7 @@ Last modified : Tue Feb 27 17:06 2018
 """
 import json
 import argparse
+import re
 
 #Paser for input arguments
 parser = argparse.ArgumentParser()
@@ -29,16 +30,17 @@ word_dict = dict()
 for line in fileR:
         for word in line.split():
             nbword += 1 
+            word = word.lower()
+            word = re.sub(r'[^a-z]','',word)
             if word in word_dict:
                 word_dict[word] += 1
             else:
                 word_dict[word] = 1
-print(word_dict)
-print(nbword)
+
 #For each word we define the %age of the word apperence   
-for key in word_dict:
-    word_dict[key] = round(float(word_dict[key])/nbword,10) #depeding of what you want the round can be modified
-print(word_dict)
+#for key in word_dict:
+#    word_dict[key] = round(float(word_dict[key])/nbword,10) #depeding of what you want the round can be modified
+
 #test to see we are doing the right thing
 #for key in word_dict:
 #    sumtest += word_dict[key]
