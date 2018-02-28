@@ -30,16 +30,18 @@ word_dict = dict()
 for line in fileR:
         for word in line.split():
             nbword += 1 
-            word = word.lower()
-            word = re.sub(r'[^a-z]','',word)
+            #Word traitement
+            word = word.lower() #we put all the word in lowercase
+            word = re.sub(r'[^a-z\-]','',word) #we replace other characters than letter or - by the empty character ""
+            
             if word in word_dict:
                 word_dict[word] += 1
             else:
                 word_dict[word] = 1
 
 #For each word we define the %age of the word apperence   
-#for key in word_dict:
-#    word_dict[key] = round(float(word_dict[key])/nbword,10) #depeding of what you want the round can be modified
+for key in word_dict:
+    word_dict[key] = round(float(word_dict[key])/nbword,10) #depeding of what you want the round can be modified
 
 #test to see we are doing the right thing
 #for key in word_dict:
